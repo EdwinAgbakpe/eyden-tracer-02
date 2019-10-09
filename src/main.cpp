@@ -78,7 +78,7 @@ int main(int argc, char* argv[])
 {
 	Mat img = RenderFrame();
 	imshow("Image", img);
-	waitKey();
+	waitKey(10000);
 	imwrite("flat.jpg", img);
 	return 0;
 }
