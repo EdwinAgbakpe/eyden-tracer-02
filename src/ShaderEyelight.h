@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ShaderFlat.h"
-
+#include <cmath>
 /**
  * @brief Eye-light shader class
  */
@@ -22,7 +22,10 @@ public:
 	virtual Vec3f Shade(const Ray& ray) const override
 	{
 		// --- PUT YOUR CODE HERE ---
-		return RGB(0, 0, 0);
+		Vec3f U, V;
+		cv::normalize(ray.dir, U);
+		double th = ray.hit->GetNormal(ray).dot(ray.dir);
+		return abs(th) * CShaderFlat::Shade(ray) ;
 	}
 };
 

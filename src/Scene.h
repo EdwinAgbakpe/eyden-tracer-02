@@ -74,7 +74,7 @@ public:
 	{
 		// --- PUT YOUR CODE HERE ---
 		if(Intersect(ray) == true)
-			return Vec3f(RGB(255, 255, 255));
+			return ray.hit->getShader()->Shade(ray);
 		return Vec3f(RGB(0, 0, 0));
 	}
 

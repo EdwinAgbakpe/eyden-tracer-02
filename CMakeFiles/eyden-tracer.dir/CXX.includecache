@@ -61,6 +61,8 @@ CameraPerspective.h
 /Users/edwinagbakpe/eyden-tracer-02/src/ShaderEyelight.h
 ShaderFlat.h
 /Users/edwinagbakpe/eyden-tracer-02/src/ShaderFlat.h
+cmath
+-
 
 /Users/edwinagbakpe/eyden-tracer-02/src/ShaderFlat.h
 IShader.h
