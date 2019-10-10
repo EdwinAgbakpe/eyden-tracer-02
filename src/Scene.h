@@ -73,9 +73,12 @@ public:
 	Vec3f RayTrace(Ray& ray) const
 	{
 		// --- PUT YOUR CODE HERE ---
-		if(Intersect(ray) == true)
-			return ray.hit->getShader()->Shade(ray);
-		return Vec3f(RGB(0, 0, 0));
+		Vec3f col = RGB(0, 0, 0);
+		for (auto prim: m_vpPrims){
+			if(prim->Intersect(ray) == true)
+				col =  ray.hit->getShader()->Shade(ray);
+		}
+		return col;
 	}
 
 
