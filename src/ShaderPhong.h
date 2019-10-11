@@ -67,9 +67,6 @@ public:
 		for(auto obj: m_scene.m_vpLights)
 		{
 			Li = obj->Illuminate(I).value();
-
-			if (m_scene.Occluded(I) && (ray.hit != I.hit))
-				col/=1.2;
 		}
 
 
