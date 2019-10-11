@@ -57,8 +57,9 @@ public:
 	virtual Vec3f GetNormal(const Ray& ray) const override
 	{
 		// --- PUT YOUR CODE HERE ---
-		Vec3f n;
-		cv::normalize(m_center, n);
+		Vec3f n = ray.org + ray.t * ray.dir;
+	
+		return (n - m_center) / m_radius;
 		return n;
 	}
 	
