@@ -31,23 +31,22 @@ public:
 		// --- PUT YOUR CODE HERE ---
 		Ray I;
 		Vec3f Li; 
-		
 		Vec3f R;
+		Vec3f V; 
 		Vec3f diffuse(0, 0, 0);
 		Vec3f specular(0, 0, 0);
-		Vec3f V; 
 		Vec3f cs = RGB(1, 1, 1);
 		Vec3f cd = CShaderFlat::Shade(ray);
+
 		I.org = ray.org + ray.t * ray.dir;
 		
 		float i_N;
 		Vec3f m_Normal = ray.hit->GetNormal(ray);
 
 		Vec3f L_a(0, 0, 0);
-		for(auto light: m_scene.m_vpLights)
-		{
-					
-			Li = light->Illuminate(I).value();
+
+		for(auto obj: m_scene.m_vpLights){	
+			Li = obj->Illuminate(I).value();
 			L_a += Li;
 			i_N = std::max(0.f,I.dir.dot(ray.hit->GetNormal(ray)));
 			V = -1 * ray.dir;
@@ -58,14 +57,13 @@ public:
 		
 		Vec3f col;
 		Vec3f m_ca = cd;
-		for (int i = 0; i < 3; i++) 
-		{
+
+		for (int i = 0; i < 3; i++){
 			col[i] = m_ca[i] * m_ka * L_a[i]+ m_kd * cd[i] * diffuse[i] + m_ks * specular[i]*cs[i];
 		}
 
 		
-		for(auto obj: m_scene.m_vpLights)
-		{
+		for(auto obj: m_scene.m_vpLights){
 			Li = obj->Illuminate(I).value();
 			if (m_scene.Occluded(I) && (ray.hit != I.hit))
 				col/=1.2;
