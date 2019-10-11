@@ -63,6 +63,8 @@ public:
 	bool Occluded(Ray& ray)
 	{
 		// --- PUT YOUR CODE HERE ---
+		if (Intersect(ray))
+			return true;
 		return false;
 	}
 
